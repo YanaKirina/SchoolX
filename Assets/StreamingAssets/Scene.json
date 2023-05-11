@@ -1,0 +1,14 @@
+[
+    {
+        "index" : "1",
+        "name" : "Yana",
+        "text" : "dialog1",
+        "image" : "hare"
+    },    
+    {
+        "index" : "2",
+        "name" : "Yana",
+        "text" : "dialog2",
+        "image" : "lysenko"
+    }
+]
