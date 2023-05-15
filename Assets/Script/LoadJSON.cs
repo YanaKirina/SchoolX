@@ -18,6 +18,7 @@ public class LoadJSON : MonoBehaviour
     private string pathImage;
     //public KeyCode switchKey;
     public int indexRound = 0;
+    public Image aaa;
     void Start()
     {
         path = Application.streamingAssetsPath + "/Scene.json";
@@ -27,20 +28,26 @@ public class LoadJSON : MonoBehaviour
 
     void Update()
     {
-        if (indexRound < listOfJSON.listOfJSON.Count)
-        {
+        //if (indexRound < listOfJSON.listOfJSON.Count & indexRound >= 0)
+        //{
             character.text = listOfJSON.listOfJSON[indexRound].name;
             dialog.text = listOfJSON.listOfJSON[indexRound].text;
             pathImage = listOfJSON.listOfJSON[indexRound].image;
             backgroundImage.sprite = Resources.Load<Sprite>("Background/" + pathImage);
-        }
+        //}
     }
     public void ButtonBack()
     {
-        indexRound--;
+        if (indexRound > 0)
+        {
+            indexRound--;
+        }
     }
     public void ButtonThen()
     {
-        indexRound++;
+        if (indexRound < listOfJSON.listOfJSON.Count - 1)
+        {
+            indexRound++;
+        }
     }
 }

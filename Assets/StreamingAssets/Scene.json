@@ -7,8 +7,32 @@
     },    
     {
         "index" : "2",
-        "name" : "Yana",
+        "name" : "2",
         "text" : "dialog2",
+        "image" : "lysenko"
+    },    
+    {
+        "index" : "3",
+        "name" : "3",
+        "text" : "dialog3",
+        "image" : "hare"
+    },    
+    {
+        "index" : "4",
+        "name" : "4",
+        "text" : "dialog4",
+        "image" : "lysenko"
+    },    
+    {
+        "index" : "5",
+        "name" : "5",
+        "text" : "dialog5",
+        "image" : "hare"
+    },    
+    {
+        "index" : "6",
+        "name" : "6",
+        "text" : "dialog6",
         "image" : "lysenko"
     }
 ]
