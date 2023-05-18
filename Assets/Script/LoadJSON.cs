@@ -17,7 +17,8 @@ public class LoadJSON : MonoBehaviour
     private Image backgroundImage;
     private string pathImage;
     int indexRound = 0;
-    private JsonFileChoise jsonFileChoise = new JsonFileChoise();
+    int indexRoundChoise = 0; 
+    //private JsonFileChoise jsonFileChoise = new JsonFileChoise();
     private JsonListChoise jsonListChoise = new JsonListChoise();
     private string pathChoise;
 
@@ -33,6 +34,10 @@ public class LoadJSON : MonoBehaviour
     [SerializeField]
     GameObject button4;
     Text textButton4;
+    [SerializeField]
+    GameObject then;
+    [SerializeField]
+    GameObject back;
 
     void Start()
     {
@@ -52,14 +57,11 @@ public class LoadJSON : MonoBehaviour
 
     void Update()
     {
-        if (listOfJSON.listOfJSON[indexRound].index == "No")
-        {
-            
-        }
         character.text = listOfJSON.listOfJSON[indexRound].name;
         dialog.text = listOfJSON.listOfJSON[indexRound].text;
         pathImage = listOfJSON.listOfJSON[indexRound].image;
         backgroundImage.sprite = Resources.Load<Sprite>("Background/" + pathImage);
+
             
     }
     public void ButtonBack()
@@ -74,6 +76,35 @@ public class LoadJSON : MonoBehaviour
         if (indexRound < listOfJSON.listOfJSON.Count - 1)
         {
             indexRound++;
+            if (listOfJSON.listOfJSON[indexRound].condition == "No")
+            {
+                then.SetActive(false);
+                back.SetActive(false);
+                button1.SetActive(true);
+                button2.SetActive(true);
+                button3.SetActive(true);
+                button4.SetActive(true);
+                character.text = " ";
+                dialog.text = " ";
+                indexRoundChoise++;
+                Debug.Log(indexRoundChoise);
+            }
         }
+    }
+    public void Button1()
+    {
+
+    }
+    public void Button2()
+    {
+
+    }
+    public void Button3()
+    {
+
+    }
+    public void Button4()
+    {
+
     }
 }

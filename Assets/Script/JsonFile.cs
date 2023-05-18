@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class JsonFile {
     [SerializeField]
-    public string index;
+    public string condition;
     [SerializeField]
     public string name;
     [SerializeField]
