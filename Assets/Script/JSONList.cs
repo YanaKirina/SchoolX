@@ -4,7 +4,7 @@ using UnityEngine;
 using System;
 
 [Serializable]
-public class JSONList
+public class JsonList
 {
     [SerializeField]
     public List<JsonFile> listOfJSON = new List<JsonFile>();

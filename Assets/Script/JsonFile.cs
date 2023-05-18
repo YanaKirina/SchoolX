@@ -2,14 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class JsonFile { 
-
+public class JsonFile {
     [SerializeField]
-    public int index;
+    public string index;
     [SerializeField]
     public string name;
     [SerializeField]
     public string text;
     [SerializeField]
     public string image;
+
 }
