@@ -25,7 +25,7 @@ public class LoadJSON : MonoBehaviour
     private Image human;
 
     public int indexRound = 1;
-    public int indexRoundChoise = 0;
+    public int indexRoundChoise = 1;
     int indexIssue = -1;
 
     [SerializeField]
@@ -48,6 +48,8 @@ public class LoadJSON : MonoBehaviour
     GameObject then;
     [SerializeField]
     GameObject aaa;
+    [SerializeField]
+    GameObject humanImage;
 
     void Start()
     {
@@ -58,15 +60,17 @@ public class LoadJSON : MonoBehaviour
         pathChoise = Application.streamingAssetsPath + "/Choise.json";
         string jsonDataChoise = File.ReadAllText(pathChoise);
         jsonListChoise.listOfJSONChoise = JsonConvert.DeserializeObject<List<JsonFileChoise>>(jsonDataChoise);
-        character.text = listOfJSON.listOfJSON[indexRound].name;
-        dialog.text = listOfJSON.listOfJSON[indexRound].text;
-        pathImage = listOfJSON.listOfJSON[indexRound].image;
+        character.text = listOfJSON.listOfJSON[0].name;
+        dialog.text = listOfJSON.listOfJSON[0].text;
+        pathImage = listOfJSON.listOfJSON[0].image;
         backgroundImage.sprite = Resources.Load<Sprite>("Background/" + pathImage);
+        pathHuman = listOfJSON.listOfJSON[0].human;
+        human.sprite = Resources.Load<Sprite>("Students/" + pathHuman);
     }
 
     void Update()
     {
-
+        
     }
     public void ButtonThen()
     {
@@ -80,6 +84,16 @@ public class LoadJSON : MonoBehaviour
                 dialog.text = listOfJSON.listOfJSON[indexRound].text;
                 pathImage = listOfJSON.listOfJSON[indexRound].image;
                 backgroundImage.sprite = Resources.Load<Sprite>("Background/" + pathImage);
+                if (listOfJSON.listOfJSON[indexRound].human != "" ^ listOfJSON.listOfJSON[indexRound].human != "")
+                {
+                    humanImage.SetActive(true);
+                }
+                else
+                {
+                    pathHuman = listOfJSON.listOfJSON[indexRound].human;
+                    human.sprite = Resources.Load<Sprite>("Students/" + pathHuman);
+                    humanImage.SetActive(true);
+                }
                 indexRound++;
 
             }
