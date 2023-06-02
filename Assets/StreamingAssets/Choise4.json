@@ -11,6 +11,8 @@
         "image3" :  "chill",
         "name4" : "",
         "issue4" : ""
+        "image4" :  "",
+        "human4" :  ""
     },
     {
         "name1":"Зайцев",
@@ -27,5 +29,7 @@
         "human3" :  "zaycev",
         "name4" : "",
         "issue4" : ""
+        "image4" :  "",
+        "human4" :  ""
     }
 ]
