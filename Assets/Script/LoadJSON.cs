@@ -50,7 +50,9 @@ public class LoadJSON : MonoBehaviour
     GameObject aaa;
     [SerializeField]
     GameObject humanImage;
-
+    [SerializeField]
+    GameObject gerasin;
+    //fbgb vfgz
     void Start()
     {
         path = Application.streamingAssetsPath + "/Scene.json";
