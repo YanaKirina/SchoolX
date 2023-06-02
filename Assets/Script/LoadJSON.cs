@@ -12,7 +12,7 @@ public class LoadJSON : MonoBehaviour
 
     private string path;
     private string pathImage;
-    //private string pathHuman;
+    private string pathHuman;
     private string pathChoise;
     private string pathIssue;
 
@@ -21,8 +21,8 @@ public class LoadJSON : MonoBehaviour
 
     [SerializeField]
     private Image backgroundImage;
-    //[SerializeField]
-    //private Image human;
+    [SerializeField]
+    private Image human;
 
     public int indexRound = 1;
     public int indexRoundChoise = 0;
@@ -147,8 +147,7 @@ public class LoadJSON : MonoBehaviour
                         {
                             dialog.text = jsonIssue.listOfJSONIssue[indexIssue].issue1;
                             character.text = jsonIssue.listOfJSONIssue[indexIssue].name1;
-                            pathImage = jsonIssue.listOfJSONIssue[indexIssue].image1;
-                            backgroundImage.sprite = Resources.Load<Sprite>("Background/" + pathImage);
+                            
                             indexIssue++;
                         }
                     }
@@ -169,8 +168,7 @@ public class LoadJSON : MonoBehaviour
                         {
                             dialog.text = jsonIssue.listOfJSONIssue[indexIssue].issue2;
                             character.text = jsonIssue.listOfJSONIssue[indexIssue].name2;
-                            pathImage = jsonIssue.listOfJSONIssue[indexIssue].image2;
-                            backgroundImage.sprite = Resources.Load<Sprite>("Background/" + pathImage);
+                            
                             indexIssue++;
                         }
                     }
@@ -191,8 +189,7 @@ public class LoadJSON : MonoBehaviour
                         {
                             dialog.text = jsonIssue.listOfJSONIssue[indexIssue].issue3;
                             character.text = jsonIssue.listOfJSONIssue[indexIssue].name3;
-                            pathImage = jsonIssue.listOfJSONIssue[indexIssue].image3;
-                            backgroundImage.sprite = Resources.Load<Sprite>("Background/" + pathImage);
+                            
                             indexIssue++;
                         }
                     }
@@ -214,8 +211,7 @@ public class LoadJSON : MonoBehaviour
                         {
                             dialog.text = jsonIssue.listOfJSONIssue[indexIssue].issue4;
                             character.text = jsonIssue.listOfJSONIssue[indexIssue].name4;
-                            pathImage = jsonIssue.listOfJSONIssue[indexIssue].image4;
-                            backgroundImage.sprite = Resources.Load<Sprite>("Background/" + pathImage);
+                            
                             indexIssue++;
                         }
                     }
