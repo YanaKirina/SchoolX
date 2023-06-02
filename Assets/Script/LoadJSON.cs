@@ -12,17 +12,20 @@ public class LoadJSON : MonoBehaviour
 
     private string path;
     private string pathImage;
+    //private string pathHuman;
     private string pathChoise;
     private string pathIssue;
 
     private string Issue;
-    private int JOPA;
+    private int alternative;
 
     [SerializeField]
     private Image backgroundImage;
+    //[SerializeField]
+    //private Image human;
 
-    public int indexRound = 16;
-    int indexRoundChoise = 0;
+    public int indexRound = 1;
+    public int indexRoundChoise = 0;
     int indexIssue = -1;
 
     [SerializeField]
@@ -44,7 +47,7 @@ public class LoadJSON : MonoBehaviour
     [SerializeField]
     GameObject then;
     [SerializeField]
-    GameObject back;
+    GameObject aaa;
 
     void Start()
     {
@@ -55,187 +58,227 @@ public class LoadJSON : MonoBehaviour
         pathChoise = Application.streamingAssetsPath + "/Choise.json";
         string jsonDataChoise = File.ReadAllText(pathChoise);
         jsonListChoise.listOfJSONChoise = JsonConvert.DeserializeObject<List<JsonFileChoise>>(jsonDataChoise);
+        character.text = listOfJSON.listOfJSON[indexRound].name;
+        dialog.text = listOfJSON.listOfJSON[indexRound].text;
+        pathImage = listOfJSON.listOfJSON[indexRound].image;
+        backgroundImage.sprite = Resources.Load<Sprite>("Background/" + pathImage);
     }
 
     void Update()
     {
-        if (listOfJSON.listOfJSON[indexRound].condition != "No")
-        {
-            character.text = listOfJSON.listOfJSON[indexRound].name;
-            dialog.text = listOfJSON.listOfJSON[indexRound].text;
-            pathImage = listOfJSON.listOfJSON[indexRound].image;
-            backgroundImage.sprite = Resources.Load<Sprite>("Background/" + pathImage);
-        }
-        else
-        {
-            pathIssue = Application.streamingAssetsPath + "/Choise" + indexRoundChoise + ".json";
-            string jsonDataIssue = File.ReadAllText(pathIssue);
-            jsonIssue.listOfJSONIssue = JsonConvert.DeserializeObject<List<JsonIssue>>(jsonDataIssue);
-
-            if (indexIssue == -1)
-            {
-                then.SetActive(false);
-                back.SetActive(false);
-                button1.SetActive(true);
-                button2.SetActive(true);
-                if (jsonListChoise.listOfJSONChoise[indexRoundChoise].quantity == 3)
-                {
-                    button3.SetActive(true);
-                }
-                else if (jsonListChoise.listOfJSONChoise[indexRoundChoise].quantity == 4)
-                {
-                    button3.SetActive(true);
-                    button4.SetActive(true);
-                }
-                
-                
-                character.text = " ";
-                dialog.text = " ";
-                Text text1 = button1.transform.GetChild(0).GetComponent<Text>();
-                text1.text = jsonListChoise.listOfJSONChoise[indexRoundChoise].choise1;
-                Text text2 = button2.transform.GetChild(0).GetComponent<Text>();
-                text2.text = jsonListChoise.listOfJSONChoise[indexRoundChoise].choise2;
-                Text text3 = button3.transform.GetChild(0).GetComponent<Text>();
-                text3.text = jsonListChoise.listOfJSONChoise[indexRoundChoise].choise3;
-                Text text4 = button4.transform.GetChild(0).GetComponent<Text>();
-                text4.text = jsonListChoise.listOfJSONChoise[indexRoundChoise].choise4;
-
-            }
-            else if (indexIssue == jsonIssue.listOfJSONIssue.Count)
-            {
-                indexRound++;
-                indexIssue = -1;
-                indexRoundChoise++;
-            }
-            else if (indexIssue < jsonIssue.listOfJSONIssue.Count)
-            {
-                if (JOPA == 1)
-                {
-                    if (jsonIssue.listOfJSONIssue[indexIssue].issue1 == "") 
-                    {
-                        indexIssue = jsonIssue.listOfJSONIssue.Count;
-                    }
-                    dialog.text = jsonIssue.listOfJSONIssue[indexIssue].issue1;
-                }
-                else if (JOPA == 2)
-                {
-                    if (jsonIssue.listOfJSONIssue[indexIssue].issue2 == "")
-                    {
-                        indexIssue = jsonIssue.listOfJSONIssue.Count;
-                    }
-                    dialog.text = jsonIssue.listOfJSONIssue[indexIssue].issue2;
-                }
-                else if(JOPA == 3)
-                {
-                    if (jsonIssue.listOfJSONIssue[indexIssue].issue3 == "")
-                    {
-                        indexIssue = jsonIssue.listOfJSONIssue.Count;
-                    }
-                    dialog.text = jsonIssue.listOfJSONIssue[indexIssue].issue3;
-                }
-                else if(JOPA == 4)
-                {
-                    if (jsonIssue.listOfJSONIssue[indexIssue].issue4 == "")
-                    {
-                        indexIssue = jsonIssue.listOfJSONIssue.Count;
-                    }
-                    dialog.text = jsonIssue.listOfJSONIssue[indexIssue].issue4;
-                }
-            }
-        }
-
 
     }
-    //public void ButtonBack()
-    //{
-    //    if (indexRound > 0)
-    //    {
-            
-    //        if (listOfJSON.listOfJSON[indexRound].condition != "No")
-    //        {
-    //            indexRound--;
-    //        }
-    //        else
-    //        {
-    //            if (indexIssue > 0)
-    //            {
-    //                indexIssue--;
-    //            }
-    //            else
-    //            {
-    //                back.SetActive(false);
-    //            }
-                
-    //        }
-    //    }
-    //}
     public void ButtonThen()
     {
         if (indexRound < listOfJSON.listOfJSON.Count)
+            Debug.Log(listOfJSON.listOfJSON[indexRound].text);
         {
-            
-            if (listOfJSON.listOfJSON[indexRound].condition == "No")
+            if (listOfJSON.listOfJSON[indexRound].condition != "No")
             {
-                if (indexIssue == -1)
-                {
-                    
-                }
-                else
-                {
-                    indexIssue++;
-                    back.SetActive(true);
-                }
-                
+
+                character.text = listOfJSON.listOfJSON[indexRound].name;
+                dialog.text = listOfJSON.listOfJSON[indexRound].text;
+                pathImage = listOfJSON.listOfJSON[indexRound].image;
+                backgroundImage.sprite = Resources.Load<Sprite>("Background/" + pathImage);
+                indexRound++;
+
             }
             else
             {
-                indexRound++;
-                back.SetActive(true);
+                if (indexIssue == -1)
+                {
+                    pathIssue = Application.streamingAssetsPath + "/Choise" + indexRoundChoise + ".json";
+                    string jsonDataIssue = File.ReadAllText(pathIssue);
+                    jsonIssue.listOfJSONIssue = JsonConvert.DeserializeObject<List<JsonIssue>>(jsonDataIssue);
+                    then.SetActive(false);
+                    aaa.SetActive(false);
+                    button1.SetActive(true);
+                    button2.SetActive(true);
+                    character.text = " ";
+                    dialog.text = " ";
+                    if (jsonListChoise.listOfJSONChoise[indexRoundChoise].quantity == 3)
+                    {
+                        button3.SetActive(true);
+                    }
+                    else if (jsonListChoise.listOfJSONChoise[indexRoundChoise].quantity == 4)
+                    {
+                        button3.SetActive(true);
+                        button4.SetActive(true);
+                    }
+                    pathImage = jsonListChoise.listOfJSONChoise[indexRoundChoise].background;
+                    backgroundImage.sprite = Resources.Load<Sprite>("Background/" + pathImage);
+                    Text text1 = button1.transform.GetChild(0).GetComponent<Text>();
+                    text1.text = jsonListChoise.listOfJSONChoise[indexRoundChoise].choise1;
+                    Text text2 = button2.transform.GetChild(0).GetComponent<Text>();
+                    text2.text = jsonListChoise.listOfJSONChoise[indexRoundChoise].choise2;
+                    Text text3 = button3.transform.GetChild(0).GetComponent<Text>();
+                    text3.text = jsonListChoise.listOfJSONChoise[indexRoundChoise].choise3;
+                    Text text4 = button4.transform.GetChild(0).GetComponent<Text>();
+                    text4.text = jsonListChoise.listOfJSONChoise[indexRoundChoise].choise4;
+                }
+                else if (indexIssue == jsonIssue.listOfJSONIssue.Count - 1)
+                {
+                    indexIssue = -1;
+                    indexRoundChoise++;
+                    indexRound++;
+                    character.text = listOfJSON.listOfJSON[indexRound].name;
+                    dialog.text = listOfJSON.listOfJSON[indexRound].text;
+                    pathImage = listOfJSON.listOfJSON[indexRound].image;
+                    backgroundImage.sprite = Resources.Load<Sprite>("Background/" + pathImage);
+                    indexRound++;
+                }
+                else if (indexIssue < jsonIssue.listOfJSONIssue.Count - 1)
+                {
+                    if (alternative == 1)
+                    {
+                        if (jsonIssue.listOfJSONIssue[indexIssue + 1].issue1 == "")
+                        {
+
+                            indexRound++;
+                            character.text = listOfJSON.listOfJSON[indexRound].name;
+                            dialog.text = listOfJSON.listOfJSON[indexRound].text;
+                            pathImage = listOfJSON.listOfJSON[indexRound].image;
+                            backgroundImage.sprite = Resources.Load<Sprite>("Background/" + pathImage);
+                            indexRound++;
+                            indexIssue = -1;
+                            indexRoundChoise++;
+                        }
+                        else
+                        {
+                            dialog.text = jsonIssue.listOfJSONIssue[indexIssue].issue1;
+                            character.text = jsonIssue.listOfJSONIssue[indexIssue].name1;
+                            pathImage = jsonIssue.listOfJSONIssue[indexIssue].image1;
+                            backgroundImage.sprite = Resources.Load<Sprite>("Background/" + pathImage);
+                            indexIssue++;
+                        }
+                    }
+                    else if (alternative == 2)
+                    {
+                        if (jsonIssue.listOfJSONIssue[indexIssue + 1].issue1 == "")
+                        {
+
+                            indexRound++;
+                            character.text = listOfJSON.listOfJSON[indexRound].name;
+                            dialog.text = listOfJSON.listOfJSON[indexRound].text;
+                            pathImage = listOfJSON.listOfJSON[indexRound].image;
+                            indexRound++;
+                            indexIssue = -1;
+                            indexRoundChoise++;
+                        }
+                        else
+                        {
+                            dialog.text = jsonIssue.listOfJSONIssue[indexIssue].issue2;
+                            character.text = jsonIssue.listOfJSONIssue[indexIssue].name2;
+                            pathImage = jsonIssue.listOfJSONIssue[indexIssue].image2;
+                            backgroundImage.sprite = Resources.Load<Sprite>("Background/" + pathImage);
+                            indexIssue++;
+                        }
+                    }
+                    else if (alternative == 3)
+                    {
+                        if (jsonIssue.listOfJSONIssue[indexIssue + 1].issue1 == "")
+                        {
+
+                            indexRound++;
+                            character.text = listOfJSON.listOfJSON[indexRound].name;
+                            dialog.text = listOfJSON.listOfJSON[indexRound].text;
+                            pathImage = listOfJSON.listOfJSON[indexRound].image;
+                            indexRound++;
+                            indexIssue = -1;
+                            indexRoundChoise++;
+                        }
+                        else
+                        {
+                            dialog.text = jsonIssue.listOfJSONIssue[indexIssue].issue3;
+                            character.text = jsonIssue.listOfJSONIssue[indexIssue].name3;
+                            pathImage = jsonIssue.listOfJSONIssue[indexIssue].image3;
+                            backgroundImage.sprite = Resources.Load<Sprite>("Background/" + pathImage);
+                            indexIssue++;
+                        }
+                    }
+                    else if (alternative == 4)
+                    {
+                        if (jsonIssue.listOfJSONIssue[indexIssue + 1].issue1 == "")
+                        {
+
+                            indexRound++;
+                            character.text = listOfJSON.listOfJSON[indexRound].name;
+                            dialog.text = listOfJSON.listOfJSON[indexRound].text;
+                            pathImage = listOfJSON.listOfJSON[indexRound].image;
+
+                            indexRound++;
+                            indexIssue = -1;
+                            indexRoundChoise++;
+                        }
+                        else
+                        {
+                            dialog.text = jsonIssue.listOfJSONIssue[indexIssue].issue4;
+                            character.text = jsonIssue.listOfJSONIssue[indexIssue].name4;
+                            pathImage = jsonIssue.listOfJSONIssue[indexIssue].image4;
+                            backgroundImage.sprite = Resources.Load<Sprite>("Background/" + pathImage);
+                            indexIssue++;
+                        }
+                    }
+                }
+                
             }
         }
     }
-    public void Button1()
-    {
-        then.SetActive(true);
-        button1.SetActive(false);
-        button2.SetActive(false);
-        button3.SetActive(false);
-        button4.SetActive(false);
-        indexIssue++;
-        JOPA = 1;
+        void Button1()
+        {
+            then.SetActive(true);
+            aaa.SetActive(true);
+            button1.SetActive(false);
+            button2.SetActive(false);
+            button3.SetActive(false);
+            button4.SetActive(false);
+            indexIssue++;
+            alternative = 1;
+            dialog.text = jsonIssue.listOfJSONIssue[indexIssue].issue1;
+            character.text = jsonIssue.listOfJSONIssue[indexIssue].name1;
+
 
     }
-    public void Button2()
-    {
-        then.SetActive(true);
-        button1.SetActive(false);
-        button2.SetActive(false);
-        button3.SetActive(false);
-        button4.SetActive(false);
-        indexIssue++;
-        JOPA = 2;
+        void Button2()
+        {
+            then.SetActive(true);
+            aaa.SetActive(true);
+            button1.SetActive(false);
+            button2.SetActive(false);
+            button3.SetActive(false);
+            button4.SetActive(false);
+            indexIssue++;
+            alternative = 2;
+            dialog.text = jsonIssue.listOfJSONIssue[indexIssue].issue2;
+            character.text = jsonIssue.listOfJSONIssue[indexIssue].name2;
 
     }
-    public void Button3()
-    {
-        then.SetActive(true);
-        button1.SetActive(false);
-        button2.SetActive(false);
-        button3.SetActive(false);
-        button4.SetActive(false);
-        indexIssue++;
-        JOPA = 3;
+        void Button3()
+        {
+            then.SetActive(true);
+            aaa.SetActive(true);
+            button1.SetActive(false);
+            button2.SetActive(false);
+            button3.SetActive(false);
+            button4.SetActive(false);
+            indexIssue++;
+            alternative = 3;
+            dialog.text = jsonIssue.listOfJSONIssue[indexIssue].issue3; 
+            character.text = jsonIssue.listOfJSONIssue[indexIssue].name3;
 
     }
-    public void Button4()
-    {
-        then.SetActive(true);
-        button1.SetActive(false);
-        button2.SetActive(false);
-        button3.SetActive(false);
-        button4.SetActive(false);
-        indexIssue++;
-        JOPA = 4;
-
+        void Button4()
+        {
+            then.SetActive(true);
+            aaa.SetActive(true);
+            button1.SetActive(false);
+            button2.SetActive(false);
+            button3.SetActive(false);
+            button4.SetActive(false);
+            indexIssue++;
+            alternative = 4;
+            dialog.text = jsonIssue.listOfJSONIssue[indexIssue].issue4;
+            character.text = jsonIssue.listOfJSONIssue[indexIssue].name4;
     }
-}
+    }
+

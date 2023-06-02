@@ -7,6 +7,8 @@ public class JsonFileChoise
     [SerializeField]
     public int quantity;
     [SerializeField]
+    public string background;
+    [SerializeField]
     public string choise1;
     [SerializeField]
     public string choise2;

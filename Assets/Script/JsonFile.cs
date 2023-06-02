@@ -11,5 +11,6 @@ public class JsonFile {
     public string text;
     [SerializeField]
     public string image;
-
+    [SerializeField]
+    public string human;
 }
