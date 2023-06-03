@@ -86,15 +86,24 @@ public class LoadJSON : MonoBehaviour
                 dialog.text = listOfJSON.listOfJSON[indexRound].text;
                 pathImage = listOfJSON.listOfJSON[indexRound].image;
                 backgroundImage.sprite = Resources.Load<Sprite>("Background/" + pathImage);
-                if (listOfJSON.listOfJSON[indexRound].human != "" ^ listOfJSON.listOfJSON[indexRound].human != "")
+                if (listOfJSON.listOfJSON[indexRound].human == "gerasin")
                 {
-                    humanImage.SetActive(true);
+                    gerasin.SetActive(true);
+                    humanImage.SetActive(false);
+                    
+                }
+                else if(listOfJSON.listOfJSON[indexRound].human == "")
+                {
+                    gerasin.SetActive(false);
+                    humanImage.SetActive(false);
                 }
                 else
                 {
                     pathHuman = listOfJSON.listOfJSON[indexRound].human;
                     human.sprite = Resources.Load<Sprite>("Students/" + pathHuman);
+                    gerasin.SetActive(false);
                     humanImage.SetActive(true);
+
                 }
                 indexRound++;
 
@@ -131,6 +140,7 @@ public class LoadJSON : MonoBehaviour
                     text3.text = jsonListChoise.listOfJSONChoise[indexRoundChoise].choise3;
                     Text text4 = button4.transform.GetChild(0).GetComponent<Text>();
                     text4.text = jsonListChoise.listOfJSONChoise[indexRoundChoise].choise4;
+                    humanImage.SetActive(false);
                 }
                 else if (indexIssue == jsonIssue.listOfJSONIssue.Count - 1)
                 {
@@ -141,6 +151,26 @@ public class LoadJSON : MonoBehaviour
                     dialog.text = listOfJSON.listOfJSON[indexRound].text;
                     pathImage = listOfJSON.listOfJSON[indexRound].image;
                     backgroundImage.sprite = Resources.Load<Sprite>("Background/" + pathImage);
+                    pathImage = listOfJSON.listOfJSON[indexRound].image;
+                    backgroundImage.sprite = Resources.Load<Sprite>("Background/" + pathImage);
+                    if (listOfJSON.listOfJSON[indexRound].human == "gerasin")
+                    {
+                        gerasin.SetActive(true);
+                        humanImage.SetActive(false);
+
+                    }
+                    else if (listOfJSON.listOfJSON[indexRound].human == "")
+                    {
+                        gerasin.SetActive(false);
+                        humanImage.SetActive(false);
+                    }
+                    else
+                    {
+                        pathHuman = listOfJSON.listOfJSON[indexRound].human;
+                        human.sprite = Resources.Load<Sprite>("Students/" + pathHuman);
+                        gerasin.SetActive(false);
+                        humanImage.SetActive(true);
+                    }
                     indexRound++;
                 }
                 else if (indexIssue < jsonIssue.listOfJSONIssue.Count - 1)
@@ -163,7 +193,19 @@ public class LoadJSON : MonoBehaviour
                         {
                             dialog.text = jsonIssue.listOfJSONIssue[indexIssue].issue1;
                             character.text = jsonIssue.listOfJSONIssue[indexIssue].name1;
-                            
+                            pathImage = jsonIssue.listOfJSONIssue[indexIssue].image1;
+                            backgroundImage.sprite = Resources.Load<Sprite>("Background/" + pathImage);
+                            if (jsonIssue.listOfJSONIssue[indexIssue].human1 != "")
+                            {
+                                pathHuman = jsonIssue.listOfJSONIssue[indexIssue].human1;
+                                human.sprite = Resources.Load<Sprite>("Students/" + pathHuman);
+                                gerasin.SetActive(false);
+                                humanImage.SetActive(true);
+                            }
+                            else
+                            {
+                                humanImage.SetActive(false);
+                            }
                             indexIssue++;
                         }
                     }
@@ -176,6 +218,7 @@ public class LoadJSON : MonoBehaviour
                             character.text = listOfJSON.listOfJSON[indexRound].name;
                             dialog.text = listOfJSON.listOfJSON[indexRound].text;
                             pathImage = listOfJSON.listOfJSON[indexRound].image;
+                            backgroundImage.sprite = Resources.Load<Sprite>("Background/" + pathImage);
                             indexRound++;
                             indexIssue = -1;
                             indexRoundChoise++;
@@ -184,51 +227,100 @@ public class LoadJSON : MonoBehaviour
                         {
                             dialog.text = jsonIssue.listOfJSONIssue[indexIssue].issue2;
                             character.text = jsonIssue.listOfJSONIssue[indexIssue].name2;
-                            
+                            pathImage = jsonIssue.listOfJSONIssue[indexIssue].image2;
+                            backgroundImage.sprite = Resources.Load<Sprite>("Background/" + pathImage);
+                            if (jsonIssue.listOfJSONIssue[indexIssue].human1 != "")
+                            {
+                                pathHuman = jsonIssue.listOfJSONIssue[indexIssue].human2;
+                                human.sprite = Resources.Load<Sprite>("Students/" + pathHuman);
+                                gerasin.SetActive(false);
+                                humanImage.SetActive(true);
+                            }
+                            else
+                            {
+                                humanImage.SetActive(false);
+                            }
                             indexIssue++;
+
+
                         }
                     }
+
+
                     else if (alternative == 3)
                     {
-                        if (jsonIssue.listOfJSONIssue[indexIssue + 1].issue1 == "")
                         {
+                            if (jsonIssue.listOfJSONIssue[indexIssue + 1].issue1 == "")
+                            {
 
-                            indexRound++;
-                            character.text = listOfJSON.listOfJSON[indexRound].name;
-                            dialog.text = listOfJSON.listOfJSON[indexRound].text;
-                            pathImage = listOfJSON.listOfJSON[indexRound].image;
-                            indexRound++;
-                            indexIssue = -1;
-                            indexRoundChoise++;
-                        }
-                        else
-                        {
-                            dialog.text = jsonIssue.listOfJSONIssue[indexIssue].issue3;
-                            character.text = jsonIssue.listOfJSONIssue[indexIssue].name3;
-                            
-                            indexIssue++;
+                                indexRound++;
+                                character.text = listOfJSON.listOfJSON[indexRound].name;
+                                dialog.text = listOfJSON.listOfJSON[indexRound].text;
+                                pathImage = listOfJSON.listOfJSON[indexRound].image;
+                                backgroundImage.sprite = Resources.Load<Sprite>("Background/" + pathImage);
+                                indexRound++;
+                                indexIssue = -1;
+                                indexRoundChoise++;
+                            }
+                            else
+                            {
+                                dialog.text = jsonIssue.listOfJSONIssue[indexIssue].issue3;
+                                character.text = jsonIssue.listOfJSONIssue[indexIssue].name3;
+                                pathImage = jsonIssue.listOfJSONIssue[indexIssue].image3;
+                                backgroundImage.sprite = Resources.Load<Sprite>("Background/" + pathImage);
+                                if (jsonIssue.listOfJSONIssue[indexIssue].human1 != "")
+                                {
+                                    pathHuman = jsonIssue.listOfJSONIssue[indexIssue].human3;
+                                    human.sprite = Resources.Load<Sprite>("Students/" + pathHuman);
+                                    gerasin.SetActive(false);
+                                    humanImage.SetActive(true);
+                                }
+                                else
+                                {
+                                    humanImage.SetActive(false);
+                                }
+                                indexIssue++;
+
+
+                            }
                         }
                     }
                     else if (alternative == 4)
                     {
-                        if (jsonIssue.listOfJSONIssue[indexIssue + 1].issue1 == "")
                         {
+                            if (jsonIssue.listOfJSONIssue[indexIssue + 1].issue1 == "")
+                            {
 
-                            indexRound++;
-                            character.text = listOfJSON.listOfJSON[indexRound].name;
-                            dialog.text = listOfJSON.listOfJSON[indexRound].text;
-                            pathImage = listOfJSON.listOfJSON[indexRound].image;
+                                indexRound++;
+                                character.text = listOfJSON.listOfJSON[indexRound].name;
+                                dialog.text = listOfJSON.listOfJSON[indexRound].text;
+                                pathImage = listOfJSON.listOfJSON[indexRound].image;
+                                backgroundImage.sprite = Resources.Load<Sprite>("Background/" + pathImage);
+                                indexRound++;
+                                indexIssue = -1;
+                                indexRoundChoise++;
+                            }
+                            else
+                            {
+                                dialog.text = jsonIssue.listOfJSONIssue[indexIssue].issue4;
+                                character.text = jsonIssue.listOfJSONIssue[indexIssue].name4;
+                                pathImage = jsonIssue.listOfJSONIssue[indexIssue].image4;
+                                backgroundImage.sprite = Resources.Load<Sprite>("Background/" + pathImage);
+                                if (jsonIssue.listOfJSONIssue[indexIssue].human1 != "")
+                                {
+                                    pathHuman = jsonIssue.listOfJSONIssue[indexIssue].human4;
+                                    human.sprite = Resources.Load<Sprite>("Students/" + pathHuman);
+                                    gerasin.SetActive(false);
+                                    humanImage.SetActive(true);
+                                }
+                                else
+                                {
+                                    humanImage.SetActive(false);
+                                }
+                                indexIssue++;
 
-                            indexRound++;
-                            indexIssue = -1;
-                            indexRoundChoise++;
-                        }
-                        else
-                        {
-                            dialog.text = jsonIssue.listOfJSONIssue[indexIssue].issue4;
-                            character.text = jsonIssue.listOfJSONIssue[indexIssue].name4;
-                            
-                            indexIssue++;
+
+                            }
                         }
                     }
                 }
@@ -292,5 +384,4 @@ public class LoadJSON : MonoBehaviour
             dialog.text = jsonIssue.listOfJSONIssue[indexIssue].issue4;
             character.text = jsonIssue.listOfJSONIssue[indexIssue].name4;
     }
-    }
-
+}
