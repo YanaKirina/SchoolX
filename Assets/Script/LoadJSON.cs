@@ -25,7 +25,7 @@ public class LoadJSON : MonoBehaviour
     private Image human;
 
     public int indexRound = 1;
-    public int indexRoundChoise = 1;
+    public int indexRoundChoise = 0;
     int indexIssue = -1;
 
     [SerializeField]
@@ -72,7 +72,10 @@ public class LoadJSON : MonoBehaviour
 
     void Update()
     {
-        
+        if (pathHuman == "")
+        {
+            humanImage.SetActive(false);
+        }
     }
     public void ButtonThen()
     {

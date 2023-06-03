@@ -686,7 +686,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   backgroundImage: {fileID: 876719238}
   human: {fileID: 1327287621}
-  indexRound: 0
+  indexRound: 1
   indexRoundChoise: 0
   character: {fileID: 1487723011}
   dialog: {fileID: 288881809}
